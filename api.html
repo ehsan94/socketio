@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Api - ticker</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script>
+      $(function () {
+        
+        setInterval(function(){
+                $.ajax({
+        url: "/endPoint",
+        type: "GET",
+       
+        success: function (response) {
+        	console.log(response);
+        	if(response === ''){}else{
+        	 console.log("new prices from server "+ response);
+            var node = document.createElement("LI");
+            var textnode = document.createTextNode(response);
+            node.appendChild(textnode);
+            document.getElementById("myList").appendChild(node);
+            $('#stockprice').text(response);
+          }
+            //do whatever your thingy..
+		    }});
+		          }, 1000);
+
+      });
+    </script>
+
+  </head>
+  <body>
+    
+
+<h2>Room 1 Data</h2>
+Stock price: <span id="stockprice">no data yet</span>
+<ul id="myList">
+</ul>
+
+  </body>
+</html>
